@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SEO Content Engine OS™ — The Operating System for Solo Founder SEO</title>
+<meta name="description" content="A 7-module AI system that runs keyword research through to a published, optimised SEO article in 58 minutes. Built by a solo founder. No agency. No writer. $297 one-time.">
+<meta property="og:title" content="SEO Content Engine OS™ — Keyword to Published Article in 58 Minutes">
+<meta property="og:description" content="7 modules. 28 prompts. One connected system. Replace your SEO agency, writer, and keyword tools with a $297 one-time system.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://ibrahimshuaib.com">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://ibrahimshuaib.com">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700;9..144,800&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* ════════════════════════════════════════════════════════
+   TOKEN SYSTEM
+   Color — bg void, two surfaces, brass accent (warm, not neon),
+   muted signal green for "done" states, muted red for cost-pain only.
+   Type — Fraunces (display, headlines only) / Inter (body) /
+   JetBrains Mono (system labels, data, code).
+   Signature — the Engine Status runtime panel: the 7 real modules
+   of the product, in their true run order, cycling idle→running→done.
+   ════════════════════════════════════════════════════════ */
+:root{
+  --bg:#0A0B0E;
+  --surface:#121319;
+  --surface-2:#181A22;
+  --border:#242732;
+  --border-strong:#34384A;
+  --text-primary:#F2EFE9;
+  --text-secondary:#9A9CA8;
+  --text-muted:#5C5F6E;
+  --brass:#DA9F4C;
+  --brass-bright:#F0B86A;
+  --brass-dim:rgba(218,159,76,0.10);
+  --brass-border:rgba(218,159,76,0.32);
+  --green:#5FCBA0;
+  --green-dim:rgba(95,203,160,0.10);
+  --green-border:rgba(95,203,160,0.30);
+  --red:#C96A55;
+  --red-dim:rgba(201,106,85,0.10);
+  --red-border:rgba(201,106,85,0.28);
+  --r-sm:8px;
+  --r-md:14px;
+  --r-lg:22px;
+  --ease:cubic-bezier(.16,1,.3,1);
+  --maxw:1180px;
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);
+  color:var(--text-primary);
+  font-family:'Inter',sans-serif;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+::selection{background:var(--brass-dim);color:var(--brass-bright)}
+
+body::before{
+  content:'';
+  position:fixed;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
+  pointer-events:none;z-index:1;
+}
+
+.font-display{font-family:'Fraunces',serif}
+.font-mono{font-family:'JetBrains Mono',monospace}
+
+a{color:inherit;text-decoration:none}
+img,svg{display:block;max-width:100%}
+button{font-family:inherit;cursor:pointer}
+
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px}
+.eyebrow{
+  font-family:'JetBrains Mono',monospace;
+  font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--brass);display:flex;align-items:center;gap:8px;
+  margin-bottom:14px;
+}
+.eyebrow::before{content:'';width:14px;height:1px;background:var(--brass)}
+
+h1,h2,h3{font-family:'Fraunces',serif;font-weight:600;letter-spacing:-0.01em;color:var(--text-primary)}
+
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  padding:14px 26px;border-radius:var(--r-sm);font-size:15px;font-weight:600;
+  border:1px solid transparent;transition:all .22s var(--ease);
+  font-family:'Inter',sans-serif;white-space:nowrap;
+}
+.btn-primary{background:var(--brass);color:#0A0B0E}
+.btn-primary:hover{background:var(--brass-bright);transform:translateY(-1px);box-shadow:0 8px 28px rgba(218,159,76,0.22)}
+.btn-ghost{background:transparent;color:var(--text-primary);border-color:var(--border-strong)}
+.btn-ghost:hover{border-color:var(--brass-border);color:var(--brass-bright)}
+.btn:focus-visible{outline:2px solid var(--brass);outline-offset:3px}
+
+.nav{
+  position:sticky;top:0;z-index:90;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:16px 28px;
+  background:rgba(10,11,14,0.7);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border-bottom:1px solid transparent;
+  transition:border-color .25s, background .25s;
+}
+.nav.scrolled{border-bottom-color:var(--border);background:rgba(10,11,14,0.92)}
+.nav-inner{max-width:var(--maxw);margin:0 auto;width:100%;display:flex;align-items:center;justify-content:space-between}
+.brand{display:flex;align-items:center;gap:10px;font-weight:600;font-size:15px}
+.brand-mark{
+  width:28px;height:28px;border-radius:7px;background:var(--brass-dim);
+  border:1px solid var(--brass-border);display:flex;align-items:center;justify-content:center;
+  font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;color:var(--brass);
+}
+.nav-links{display:flex;gap:30px;align-items:center}
+.nav-link{font-size:14px;color:var(--text-secondary);transition:color .2s}
+.nav-link:hover{color:var(--text-primary)}
+.nav-cta{display:flex;align-items:center;gap:14px}
+.nav-cta .btn{padding:10px 18px;font-size:13.5px}
+
+.hero{padding:88px 0 60px;position:relative;z-index:2}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:64px;align-items:center}
+.hero h1{font-size:clamp(38px,4.6vw,58px);line-height:1.07;letter-spacing:-0.02em;margin-bottom:22px}
+.hero h1 .ital{font-style:italic;color:var(--brass-bright);font-weight:500}
+.hero-sub{font-size:18px;color:var(--text-secondary);max-width:480px;line-height:1.65;margin-bottom:30px}
+.hero-cta-row{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:28px}
+.hero-meta{
+  display:flex;gap:22px;flex-wrap:wrap;font-family:'JetBrains Mono',monospace;
+  font-size:12px;color:var(--text-muted);
+}
+.hero-meta span{display:flex;align-items:center;gap:6px}
+.dot-static{width:5px;height:5px;border-radius:50%;background:var(--text-muted)}
+
+.engine-panel{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:var(--r-lg);
+  overflow:hidden;
+  box-shadow:0 30px 80px -20px rgba(0,0,0,0.55);
+}
+.engine-topbar{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:14px 18px;border-bottom:1px solid var(--border);
+  background:var(--surface-2);
+}
+.engine-topbar-left{display:flex;align-items:center;gap:10px}
+.dot-pulse{
+  width:7px;height:7px;border-radius:50%;background:var(--green);
+  box-shadow:0 0 0 0 rgba(95,203,160,0.5);
+  animation:pulse-ring 2s ease infinite;
+}
+@keyframes pulse-ring{
+  0%{box-shadow:0 0 0 0 rgba(95,203,160,0.45)}
+  70%{box-shadow:0 0 0 7px rgba(95,203,160,0)}
+  100%{box-shadow:0 0 0 0 rgba(95,203,160,0)}
+}
+.engine-title{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--text-secondary);letter-spacing:.04em}
+.engine-progress-label{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text-muted)}
+
+.engine-body{padding:6px 0}
+.engine-row{
+  display:flex;align-items:center;gap:14px;
+  padding:13px 18px;border-bottom:1px solid var(--border);
+  transition:background .3s;
+}
+.engine-row:last-child{border-bottom:none}
+.engine-row.is-running{background:var(--brass-dim)}
+.engine-row.is-done{background:transparent}
+.engine-code{
+  font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text-muted);
+  width:34px;flex-shrink:0;
+}
+.engine-row.is-running .engine-code{color:var(--brass)}
+.engine-row.is-done .engine-code{color:var(--green)}
+.engine-name{font-size:13.5px;color:var(--text-secondary);flex:1;min-width:0}
+.engine-row.is-running .engine-name,
+.engine-row.is-done .engine-name{color:var(--text-primary)}
+.engine-status{
+  font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.06em;
+  padding:3px 9px;border-radius:20px;flex-shrink:0;white-space:nowrap;
+  border:1px solid var(--border-strong);color:var(--text-muted);
+}
+.engine-status.running{color:var(--brass);border-color:var(--brass-border);background:rgba(218,159,76,0.08)}
+.engine-status.done{color:var(--green);border-color:var(--green-border);background:rgba(95,203,160,0.08)}
+
+.engine-progress-track{height:2px;background:var(--border);position:relative}
+.engine-progress-fill{height:100%;width:0%;background:linear-gradient(90deg,var(--brass),var(--green));transition:width .6s var(--ease)}
+
+.engine-footer{
+  padding:13px 18px;display:flex;justify-content:space-between;align-items:center;
+  font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text-muted);
+  border-top:1px solid var(--border);background:var(--surface-2);
+}
+.engine-footer b{color:var(--brass)}
+
+.section{padding:110px 0;position:relative;z-index:2}
+.section-head{max-width:620px;margin-bottom:54px}
+.section-head h2{font-size:clamp(30px,3.4vw,42px);line-height:1.15}
+.section-head p{font-size:16.5px;color:var(--text-secondary);margin-top:14px;line-height:1.65}
+.section-border-top{border-top:1px solid var(--border)}
+
+.cost-stack{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+@media(max-width:860px){.cost-stack{grid-template-columns:1fr}}
+.cost-card{
+  background:var(--surface);border:1px solid var(--border);border-radius:var(--r-md);
+  padding:26px 28px;
+}
+.cost-card-without{border-color:var(--red-border)}
+.cost-card-with{border-color:var(--green-border);background:linear-gradient(180deg,rgba(95,203,160,0.04),transparent)}
+.cost-card-label{
+  font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;
+  margin-bottom:18px;display:flex;align-items:center;gap:8px;
+}
+.cost-card-without .cost-card-label{color:var(--red)}
+.cost-card-with .cost-card-label{color:var(--green)}
+.cost-line{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:11px 0;border-bottom:1px solid var(--border);font-size:14.5px;
+}
+.cost-line:last-of-type{border-bottom:none}
+.cost-line-label{color:var(--text-secondary)}
+.cost-line-val{font-family:'JetBrains Mono',monospace;font-weight:600}
+.cost-card-without .cost-line-val{color:var(--red)}
+.cost-card-with .cost-line-val{color:var(--green)}
+.cost-total{
+  display:flex;justify-content:space-between;align-items:baseline;
+  margin-top:18px;padding-top:18px;border-top:1px solid var(--border-strong);
+}
+.cost-total-label{font-size:13px;color:var(--text-muted);font-family:'JetBrains Mono',monospace}
+.cost-total-val{font-family:'Fraunces',serif;font-size:30px;font-weight:600}
+.cost-card-without .cost-total-val{color:var(--red)}
+.cost-card-with .cost-total-val{color:var(--green)}
+
+.module-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+@media(max-width:920px){.module-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:620px){.module-grid{grid-template-columns:1fr}}
+.module-card{
+  background:var(--surface);border:1px solid var(--border);border-radius:var(--r-md);
+  padding:24px;position:relative;overflow:hidden;transition:border-color .25s,transform .25s;
+}
+.module-card:hover{transform:translateY(-3px)}
+.module-card[data-accent="brass"]{--accent:var(--brass);--accent-border:var(--brass-border);--accent-dim:var(--brass-dim)}
+.module-card[data-accent="green"]{--accent:var(--green);--accent-border:var(--green-border);--accent-dim:var(--green-dim)}
+.module-card[data-accent="blue"]{--accent:#6FA8DC;--accent-border:rgba(111,168,220,.32);--accent-dim:rgba(111,168,220,.1)}
+.module-card[data-accent="rose"]{--accent:#D88A8A;--accent-border:rgba(216,138,138,.32);--accent-dim:rgba(216,138,138,.1)}
+.module-card[data-accent="lilac"]{--accent:#B7A2D9;--accent-border:rgba(183,162,217,.32);--accent-dim:rgba(183,162,217,.1)}
+.module-card[data-accent="teal"]{--accent:#74C7B8;--accent-border:rgba(116,199,184,.32);--accent-dim:rgba(116,199,184,.1)}
+.module-card:hover{border-color:var(--accent-border)}
+.module-card-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
+.module-code{
+  font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--accent);
+  background:var(--accent-dim);border:1px solid var(--accent-border);
+  padding:3px 9px;border-radius:5px;letter-spacing:.04em;
+}
+.module-first-badge{
+  font-family:'JetBrains Mono',monospace;font-size:9.5px;color:var(--text-muted);
+  letter-spacing:.08em;text-transform:uppercase;
+}
+.module-card h3{font-size:17px;font-weight:600;margin-bottom:9px;font-family:'Inter',sans-serif}
+.module-card p{font-size:13.8px;color:var(--text-secondary);line-height:1.6}
+.module-card-foot{
+  margin-top:16px;padding-top:14px;border-top:1px solid var(--border);
+  font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text-muted);
+}
+
+.vault-section{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+@media(max-width:900px){.vault-section{grid-template-columns:1fr}}
+.vault-feature-list{margin-top:24px;display:flex;flex-direction:column;gap:14px}
+.vault-feature{display:flex;align-items:flex-start;gap:12px;font-size:14.5px;color:var(--text-secondary)}
+.vault-feature svg{flex-shrink:0;margin-top:3px;color:var(--brass)}
+.vault-card{
+  background:var(--surface-2);border:1px solid var(--border);border-radius:var(--r-lg);
+  overflow:hidden;box-shadow:0 30px 70px -25px rgba(0,0,0,0.5);
+}
+.vault-card-top{
+  display:flex;align-items:center;gap:10px;padding:14px 18px;
+  border-bottom:1px solid var(--border);background:var(--surface);
+}
+.vault-row{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:13px 18px;border-bottom:1px solid var(--border);
+}
+.vault-row:last-child{border-bottom:none}
+.vault-key{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text-muted);text-transform:uppercase;letter-spacing:.04em}
+.vault-val{font-size:13px;color:var(--text-primary);text-align:right;max-width:60%}
+.vault-foot{
+  padding:12px 18px;background:var(--brass-dim);border-top:1px solid var(--brass-border);
+  font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--brass);
+}
+
+.proof-card{
+  background:#08090C;border:1px solid var(--border);border-radius:var(--r-lg);
+  max-width:760px;margin:0 auto;overflow:hidden;
+}
+.proof-bar{
+  display:flex;align-items:center;gap:9px;padding:13px 18px;
+  border-bottom:1px solid var(--border);background:var(--surface);
+}
+.proof-bar-dot{width:9px;height:9px;border-radius:50%}
+.proof-bar-title{
+  flex:1;text-align:center;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text-muted);
+}
+.proof-body{padding:26px 28px;font-family:'JetBrains Mono',monospace;font-size:13px;line-height:2.05}
+.proof-line-muted{color:var(--text-muted)}
+.proof-line-green{color:var(--green)}
+.proof-line-brass{color:var(--brass)}
+.proof-stats{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:0;
+  border-top:1px solid var(--border);
+}
+@media(max-width:620px){.proof-stats{grid-template-columns:repeat(2,1fr)}}
+.proof-stat{
+  padding:20px;text-align:center;border-right:1px solid var(--border);
+}
+.proof-stat:last-child{border-right:none}
+.proof-stat-num{font-family:'Fraunces',serif;font-size:26px;font-weight:600;color:var(--brass-bright)}
+.proof-stat-label{font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--text-muted);margin-top:4px;text-transform:uppercase;letter-spacing:.06em}
+
+.honest-banner{
+  background:var(--surface);border:1px solid var(--border);border-radius:var(--r-md);
+  padding:26px 30px;display:flex;gap:18px;align-items:flex-start;max-width:680px;margin:40px auto 0;
+}
+.honest-banner svg{flex-shrink:0;color:var(--brass);margin-top:2px}
+.honest-banner p{font-size:14px;color:var(--text-secondary);line-height:1.65}
+.honest-banner strong{color:var(--text-primary)}
+
+.pricing-card{
+  max-width:480px;margin:0 auto;background:var(--surface);
+  border:1px solid var(--brass-border);border-radius:var(--r-lg);
+  padding:42px;position:relative;overflow:hidden;
+}
+.pricing-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,var(--brass),var(--green));
+}
+.pricing-badge{
+  display:inline-block;font-family:'JetBrains Mono',monospace;font-size:10.5px;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--brass);
+  background:var(--brass-dim);border:1px solid var(--brass-border);
+  padding:4px 12px;border-radius:20px;margin-bottom:20px;
+}
+.pricing-name{font-size:21px;font-weight:700;margin-bottom:6px;font-family:'Inter',sans-serif}
+.pricing-price-row{display:flex;align-items:baseline;gap:6px;margin:18px 0 4px}
+.pricing-currency{font-size:24px;color:var(--text-secondary);font-family:'Fraunces',serif}
+.pricing-amount{font-size:58px;font-weight:700;font-family:'Fraunces',serif;color:var(--text-primary)}
+.pricing-period{font-size:14px;color:var(--text-muted)}
+.pricing-strike{font-size:13px;color:var(--text-muted);text-decoration:line-through;margin-bottom:24px}
+.pricing-divider{height:1px;background:var(--border);margin:24px 0}
+.pricing-features{display:flex;flex-direction:column;gap:13px;margin-bottom:30px}
+.pricing-feature{display:flex;align-items:flex-start;gap:11px;font-size:14px;color:var(--text-secondary)}
+.pricing-feature svg{flex-shrink:0;color:var(--green);margin-top:3px}
+.pricing-card .btn{width:100%}
+.pricing-guarantee{
+  margin-top:18px;text-align:center;font-size:12.5px;color:var(--text-muted);
+  display:flex;align-items:center;justify-content:center;gap:7px;
+}
+
+.faq-list{max-width:760px;margin:0 auto;display:flex;flex-direction:column;gap:12px}
+.faq-item{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-md);overflow:hidden}
+.faq-q{
+  width:100%;display:flex;justify-content:space-between;align-items:center;gap:16px;
+  padding:19px 24px;background:none;border:none;text-align:left;color:var(--text-primary);
+  font-size:15.5px;font-weight:600;font-family:'Inter',sans-serif;
+}
+.faq-q-icon{flex-shrink:0;color:var(--brass);transition:transform .25s var(--ease)}
+.faq-item.open .faq-q-icon{transform:rotate(45deg)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .3s var(--ease)}
+.faq-a-inner{padding:0 24px 20px;font-size:14.5px;color:var(--text-secondary);line-height:1.65}
+.faq-item.open .faq-a{max-height:300px}
+
+.founder-section{
+  background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);
+  padding:48px;max-width:780px;margin:0 auto;position:relative;
+}
+.founder-section::before{
+  content:'';position:absolute;top:0;left:42px;width:36px;height:3px;background:var(--brass);
+}
+.founder-quote{font-family:'Fraunces',serif;font-style:italic;font-size:21px;line-height:1.55;color:var(--text-primary);margin-bottom:26px}
+.founder-attr{display:flex;align-items:center;gap:12px}
+.founder-avatar{
+  width:44px;height:44px;border-radius:50%;background:var(--brass-dim);border:1px solid var(--brass-border);
+  display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;font-weight:600;color:var(--brass);
+}
+.founder-name{font-size:14.5px;font-weight:600}
+.founder-role{font-size:13px;color:var(--text-muted)}
+
+.final-cta{text-align:center;padding:120px 0;position:relative}
+.final-cta-bg{
+  position:absolute;inset:0;
+  background:radial-gradient(ellipse 60% 50% at 50% 40%,rgba(218,159,76,0.08),transparent 70%);
+  pointer-events:none;
+}
+.final-cta h2{font-size:clamp(34px,5vw,56px);max-width:680px;margin:0 auto 18px;line-height:1.1}
+.final-cta p{font-size:17px;color:var(--text-secondary);max-width:480px;margin:0 auto 36px}
+.final-cta-row{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+
+footer{border-top:1px solid var(--border);padding:48px 0 32px}
+.footer-top{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:32px;margin-bottom:36px}
+.footer-brand-col{max-width:280px}
+.footer-brand-col p{font-size:13.5px;color:var(--text-muted);margin-top:10px;line-height:1.6}
+.footer-links-group{display:flex;gap:64px;flex-wrap:wrap}
+.footer-col-title{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:14px}
+.footer-col a{display:block;font-size:13.5px;color:var(--text-secondary);margin-bottom:10px;transition:color .2s}
+.footer-col a:hover{color:var(--brass)}
+.footer-bottom{
+  padding-top:24px;border-top:1px solid var(--border);
+  display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;
+  font-size:12.5px;color:var(--text-muted);font-family:'JetBrains Mono',monospace;
+}
+
+.sticky-cta{
+  display:none;position:fixed;bottom:0;left:0;right:0;z-index:95;
+  padding:14px 18px;background:rgba(10,11,14,0.96);backdrop-filter:blur(14px);
+  border-top:1px solid var(--border);
+}
+.sticky-cta .btn{width:100%}
+
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .55s var(--ease),transform .55s var(--ease)}
+.reveal.in{opacity:1;transform:translateY(0)}
+
+@media(max-width:980px){
+  .hero-grid{grid-template-columns:1fr;gap:48px}
+  .nav-links{display:none}
+}
+@media(max-width:640px){
+  .wrap{padding:0 20px}
+  .section{padding:72px 0}
+  .hero{padding:48px 0 40px}
+  .nav-cta .btn-ghost{display:none}
+  footer{padding-bottom:90px}
+  .sticky-cta{display:block}
+  .founder-section{padding:30px}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation-duration:.01ms!important;transition-duration:.01ms!important}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="#" class="brand">
+      <span class="brand-mark">OS</span>
+      SEO Content Engine<span class="font-mono" style="font-size:11px;color:var(--brass);margin-left:2px">™</span>
+    </a>
+    <div class="nav-links">
+      <a href="#problem" class="nav-link">Problem</a>
+      <a href="#system" class="nav-link">The system</a>
+      <a href="#proof" class="nav-link">Proof</a>
+      <a href="#pricing" class="nav-link">Pricing</a>
+      <a href="#faq" class="nav-link">FAQ</a>
+    </div>
+    <div class="nav-cta">
+      <a href="https://tool.ibrahimshuaib.com" class="btn btn-ghost" target="_blank" rel="noopener">Free tool</a>
+      <a href="https://ibrahimshuaibseo.gumroad.com" class="btn btn-primary" target="_blank" rel="noopener">Get the OS — $297</a>
+    </div>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow">SEO CONTENT ENGINE OS™</div>
+      <h1>Run your SEO content<br>the way an <span class="ital">operating system</span><br>runs a process.</h1>
+      <p class="hero-sub">Seven connected modules take a keyword from research to a published, optimised article in 58 minutes. Built by a solo founder who replaced a $3,000/month agency with it.</p>
+      <div class="hero-cta-row">
+        <a href="https://ibrahimshuaibseo.gumroad.com" class="btn btn-primary" target="_blank" rel="noopener">
+          Get the OS — $297 one-time
+        </a>
+        <a href="https://tool.ibrahimshuaib.com" class="btn btn-ghost" target="_blank" rel="noopener">
+          Run Module 01 free →
+        </a>
+      </div>
+      <div class="hero-meta">
+        <span><span class="dot-static"></span>7 modules · 28 prompts</span>
+        <span><span class="dot-static"></span>58 min avg runtime</span>
+        <span><span class="dot-static"></span>Claude · GPT-4o · Gemini</span>
+      </div>
+    </div>
+
+    <div class="engine-panel reveal" id="engine-panel">
+      <div class="engine-topbar">
+        <div class="engine-topbar-left">
+          <span class="dot-pulse"></span>
+          <span class="engine-title">ENGINE.STATUS</span>
+        </div>
+        <span class="engine-progress-label" id="engine-progress-label">0 / 7 complete</span>
+      </div>
+      <div class="engine-body" id="engine-body"></div>
+      <div class="engine-progress-track"><div class="engine-progress-fill" id="engine-progress-fill"></div></div>
+      <div class="engine-footer">
+        <span>runtime target: <b>58 min</b></span>
+        <span>output: <b>1 published article</b></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-border-top" id="problem">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">The problem</div>
+      <h2>You are not short on effort.<br>You are short on a system.</h2>
+      <p>Most solo founders have tried all three paths — an agency, a freelance writer, a stack of SEO tools — and ended up paying monthly for something that still requires their own judgment to work.</p>
+    </div>
+
+    <div class="cost-stack reveal">
+      <div class="cost-card cost-card-without">
+        <div class="cost-card-label">⊘ Without a system — per article</div>
+        <div class="cost-line"><span class="cost-line-label">SEO agency retainer</span><span class="cost-line-val">$2,000–3,000/mo</span></div>
+        <div class="cost-line"><span class="cost-line-label">Freelance writer</span><span class="cost-line-val">$300–800</span></div>
+        <div class="cost-line"><span class="cost-line-label">Keyword tool (Ahrefs/Surfer)</span><span class="cost-line-val">$89–170/mo</span></div>
+        <div class="cost-line"><span class="cost-line-label">Content brief</span><span class="cost-line-val">$200–400</span></div>
+        <div class="cost-line"><span class="cost-line-label">On-page audit</span><span class="cost-line-val">$150–300</span></div>
+        <div class="cost-total">
+          <span class="cost-total-label">repeats every article</span>
+          <span class="cost-total-val">$1,150+</span>
+        </div>
+      </div>
+
+      <div class="cost-card cost-card-with">
+        <div class="cost-card-label">✓ With SEO Content Engine OS™</div>
+        <div class="cost-line"><span class="cost-line-label">Keyword research — Module 01</span><span class="cost-line-val">included</span></div>
+        <div class="cost-line"><span class="cost-line-label">Competitor brief — Module 02</span><span class="cost-line-val">included</span></div>
+        <div class="cost-line"><span class="cost-line-label">Article writing — Module 03</span><span class="cost-line-val">included</span></div>
+        <div class="cost-line"><span class="cost-line-label">On-page audit — Module 04</span><span class="cost-line-val">included</span></div>
+        <div class="cost-line"><span class="cost-line-label">Distribution — Module 06</span><span class="cost-line-val">included</span></div>
+        <div class="cost-total">
+          <span class="cost-total-label">one time, lifetime</span>
+          <span class="cost-total-val">$297</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-border-top" id="system">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">The system</div>
+      <h2>Seven modules. One runtime sequence.</h2>
+      <p>Every module's output becomes the next module's input. You always start with Module 07 — strategy — before a single keyword is researched. That order is deliberate.</p>
+    </div>
+
+    <div class="module-grid reveal">
+      <div class="module-card" data-accent="lilac">
+        <div class="module-card-top">
+          <span class="module-code">M07</span>
+          <span class="module-first-badge">Runs first</span>
+        </div>
+        <h3>90-Day Strategy Planner</h3>
+        <p>Maps your content clusters and publishing sequence before any keyword research starts — so every article compounds the ones before it.</p>
+        <div class="module-card-foot">~8 min</div>
+      </div>
+
+      <div class="module-card" data-accent="brass">
+        <div class="module-card-top"><span class="module-code">M01</span></div>
+        <h3>Keyword Intelligence</h3>
+        <p>Returns long-tail keywords a low-authority site can realistically rank for — filtered by intent and competitive opportunity.</p>
+        <div class="module-card-foot">~8 min · free version live</div>
+      </div>
+
+      <div class="module-card" data-accent="green">
+        <div class="module-card-top"><span class="module-code">M02</span></div>
+        <h3>SERP Intelligence</h3>
+        <p>Audits the current top results and surfaces the specific content gaps your article needs to fill to outrank them.</p>
+        <div class="module-card-foot">~10 min</div>
+      </div>
+
+      <div class="module-card" data-accent="blue">
+        <div class="module-card-top"><span class="module-code">M03</span></div>
+        <h3>Article Writing System</h3>
+        <p>Drafts section by section — hook, body, FAQ, conclusion — each prompt carrying forward the brief from Module 02.</p>
+        <div class="module-card-foot">~20 min</div>
+      </div>
+
+      <div class="module-card" data-accent="rose">
+        <div class="module-card-top"><span class="module-code">M04</span></div>
+        <h3>On-Page SEO Optimizer</h3>
+        <p>Rewrites your title, meta description, and internal links with specific fixes — not generic advice.</p>
+        <div class="module-card-foot">~8 min</div>
+      </div>
+
+      <div class="module-card" data-accent="teal">
+        <div class="module-card-top"><span class="module-code">M05</span></div>
+        <h3>Content Refresh Engine</h3>
+        <p>Diagnoses why a published article is losing rank and produces the exact section to rewrite to recover it.</p>
+        <div class="module-card-foot">~25 min</div>
+      </div>
+
+      <div class="module-card" data-accent="lilac">
+        <div class="module-card-top"><span class="module-code">M06</span></div>
+        <h3>Distribution Engine</h3>
+        <p>Turns one published article into a LinkedIn post, an email edition, and an X thread — same day as publishing.</p>
+        <div class="module-card-foot">~10 min</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-border-top">
+  <div class="wrap vault-section">
+    <div class="reveal">
+      <div class="eyebrow">Personalisation layer</div>
+      <h2 style="font-size:clamp(28px,3.2vw,38px);margin-bottom:6px">The Variable Vault</h2>
+      <p style="color:var(--text-secondary);font-size:16px;line-height:1.65">Fill in six details about your business once. Every one of the 28 prompts pulls from it automatically — so every article sounds like you wrote it, without re-explaining your business each time.</p>
+      <div class="vault-feature-list">
+        <div class="vault-feature">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8.5L6.5 12L13 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Set once, reused across all 28 prompts
+        </div>
+        <div class="vault-feature">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8.5L6.5 12L13 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Brand voice and audience stay consistent everywhere
+        </div>
+        <div class="vault-feature">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8.5L6.5 12L13 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Update once when your positioning changes
+        </div>
+      </div>
+    </div>
+
+    <div class="vault-card reveal">
+      <div class="vault-card-top">
+        <span class="dot-static" style="background:var(--brass)"></span>
+        <span class="engine-title">VARIABLE_VAULT</span>
+      </div>
+      <div class="vault-row"><span class="vault-key">Business name</span><span class="vault-val">SEO Content Engine OS™</span></div>
+      <div class="vault-row"><span class="vault-key">Target reader</span><span class="vault-val">Solo founder, no SEO team</span></div>
+      <div class="vault-row"><span class="vault-key">Tone</span><span class="vault-val">Direct, experience-led</span></div>
+      <div class="vault-row"><span class="vault-key">Domain authority</span><span class="vault-val">Low — new site</span></div>
+      <div class="vault-row"><span class="vault-key">Offer</span><span class="vault-val">$297 one-time, lifetime</span></div>
+      <div class="vault-foot">→ injected into all 28 prompts automatically</div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-border-top" id="proof">
+  <div class="wrap">
+    <div class="section-head reveal" style="margin-left:auto;margin-right:auto;text-align:center">
+      <div class="eyebrow" style="justify-content:center">Proof of concept</div>
+      <h2>58 minutes, start to publish.</h2>
+      <p style="margin-left:auto;margin-right:auto">A real run, timestamped, module by module.</p>
+    </div>
+
+    <div class="proof-card reveal">
+      <div class="proof-bar">
+        <span class="proof-bar-dot" style="background:#FF5F57"></span>
+        <span class="proof-bar-dot" style="background:#FEBC2E"></span>
+        <span class="proof-bar-dot" style="background:#28C840"></span>
+        <span class="proof-bar-title">article-production.log</span>
+      </div>
+      <div class="proof-body">
+        <div class="proof-line-muted">[00:00] &gt; session started</div>
+        <div class="proof-line-green">[00:08] &gt; M07 complete — strategy + content calendar</div>
+        <div class="proof-line-green">[00:16] &gt; M01 complete — 47 keywords, 6 quick wins flagged</div>
+        <div class="proof-line-green">[00:26] &gt; M02 complete — 3 competitor gaps identified</div>
+        <div class="proof-line-green">[00:46] &gt; M03 complete — 2,340-word draft</div>
+        <div class="proof-line-green">[00:54] &gt; M04 complete — on-page score 89/100</div>
+        <div class="proof-line-brass">[00:58] &gt; published ✓</div>
+      </div>
+      <div class="proof-stats">
+        <div class="proof-stat"><div class="proof-stat-num">58</div><div class="proof-stat-label">minutes</div></div>
+        <div class="proof-stat"><div class="proof-stat-num">2,340</div><div class="proof-stat-label">words</div></div>
+        <div class="proof-stat"><div class="proof-stat-num">89/100</div><div class="proof-stat-label">SEO score</div></div>
+        <div class="proof-stat"><div class="proof-stat-num">$0</div><div class="proof-stat-label">ongoing cost</div></div>
+      </div>
+    </div>
+
+    <div class="honest-banner reveal">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="8.5" stroke="currentColor" stroke-width="1.4"/><path d="M10 6.5V10.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><circle cx="10" cy="13.3" r="0.9" fill="currentColor"/></svg>
+      <p><strong>Built in public, no inflated claims.</strong> This is the founder's own production run, documented at <a href="https://blog.ibrahimshuaib.com" target="_blank" rel="noopener" style="color:var(--brass)">blog.ibrahimshuaib.com</a>. Beta access is currently open — early users get lifetime pricing locked at $297.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section section-border-top" id="pricing">
+  <div class="wrap">
+    <div class="section-head reveal" style="margin-left:auto;margin-right:auto;text-align:center">
+      <div class="eyebrow" style="justify-content:center">Pricing</div>
+      <h2>One system. Unlimited articles.</h2>
+    </div>
+
+    <div class="pricing-card reveal">
+      <span class="pricing-badge">LIFETIME ACCESS</span>
+      <div class="pricing-name">SEO Content Engine OS™</div>
+      <div class="pricing-price-row">
+        <span class="pricing-currency">$</span>
+        <span class="pricing-amount">297</span>
+        <span class="pricing-period">one-time</span>
+      </div>
+      <div class="pricing-strike">vs $1,150+ per article through agencies and tools</div>
+      <div class="pricing-divider"></div>
+      <div class="pricing-features">
+        <div class="pricing-feature"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8.5L6.5 12L13 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>All 7 modules — 28 AI prompts</div>
+        <div class="pricing-feature"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8.5L6.5 12L13 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Notion workspace — duplicate in one click</div>
+        <div class="pricing-feature"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8.5L6.5 12L13 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Variable Vault — personalise once</div>
+        <div class="pricing-feature"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8.5L6.5 12L13 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Worked example with real outputs</div>
+        <div class="pricing-feature"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8.5L6.5 12L13 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Compatible with Claude, GPT-4o, Gemini</div>
+        <div class="pricing-feature"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8.5L6.5 12L13 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Lifetime access — all future updates included</div>
+      </div>
+      <a href="https://ibrahimshuaibseo.gumroad.com" class="btn btn-primary" target="_blank" rel="noopener">Get instant access — $297</a>
+      <div class="pricing-guarantee">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M8 1.5L13.5 4V8C13.5 11.5 11 13.8 8 14.5C5 13.8 2.5 11.5 2.5 8V4L8 1.5Z" stroke="currentColor" stroke-width="1.3"/></svg>
+        30-day guarantee — save 3 hours on article one or full refund
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-border-top">
+  <div class="wrap">
+    <div class="founder-section reveal">
+      <p class="founder-quote">"I cancelled a $3,000-a-month SEO agency after six months and zero rankings. I built this because I needed the system more than I needed another invoice."</p>
+      <div class="founder-attr">
+        <div class="founder-avatar">IS</div>
+        <div>
+          <div class="founder-name">Ibrahim Shuaib</div>
+          <div class="founder-role">Solo founder, Lagos — creator of SEO Content Engine OS™</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-border-top" id="faq">
+  <div class="wrap">
+    <div class="section-head reveal" style="margin-left:auto;margin-right:auto;text-align:center">
+      <div class="eyebrow" style="justify-content:center">FAQ</div>
+      <h2>Before you ask</h2>
+    </div>
+
+    <div class="faq-list reveal" id="faq-list">
+      <div class="faq-item">
+        <button class="faq-q">Do I need SEO experience to use this?<span class="faq-q-icon font-mono">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner">No. Every module is written for someone with zero SEO background. You copy a prompt, paste it into Claude or ChatGPT, and follow the sequence in order.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Which AI tools does this work with?<span class="faq-q-icon font-mono">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner">Claude Sonnet, GPT-4o, and Gemini. Claude is recommended for the longer structured outputs in Modules 02 and 03, but every prompt is tested across all three.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Do I need Notion?<span class="faq-q-icon font-mono">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner">Yes, and it's free. Create an account at notion.so before purchasing — the free plan is completely sufficient to run the whole system.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">How long does one article actually take?<span class="faq-q-icon font-mono">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner">58 minutes on average running Modules 07 through 06 in sequence. Module 07 — quarterly planning — only needs to be run once every 90 days.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Is this a course?<span class="faq-q-icon font-mono">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner">No. There are no videos to watch. You open the Notion workspace, copy a prompt, paste it into your AI tool, and get the output. That's the entire learning curve.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">What if it doesn't work for my niche?<span class="faq-q-icon font-mono">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner">The Variable Vault adapts every prompt to your specific business, audience, and tone. It has been run successfully across freelance design, coaching, SaaS, bookkeeping, and e-commerce niches. If it doesn't save you at least 3 hours on your first article, you get a full refund within 30 days.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="final-cta section-border-top">
+  <div class="final-cta-bg"></div>
+  <div class="wrap" style="position:relative;z-index:2">
+    <h2 class="reveal">Stop renting your SEO process.<br>Own the system.</h2>
+    <p class="reveal">Seven modules, twenty-eight prompts, one runtime sequence — yours for $297, once.</p>
+    <div class="final-cta-row reveal">
+      <a href="https://ibrahimshuaibseo.gumroad.com" class="btn btn-primary" target="_blank" rel="noopener">Get the OS — $297</a>
+      <a href="https://tool.ibrahimshuaib.com" class="btn btn-ghost" target="_blank" rel="noopener">Try Module 01 free</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-top">
+      <div class="footer-brand-col">
+        <a href="#" class="brand">
+          <span class="brand-mark">OS</span>
+          SEO Content Engine OS™
+        </a>
+        <p>Built by Ibrahim Shuaib in Lagos, Nigeria. A connected AI prompt system for solo founders who need organic traffic without an agency.</p>
+      </div>
+      <div class="footer-links-group">
+        <div class="footer-col">
+          <div class="footer-col-title">Product</div>
+          <a href="#system">The system</a>
+          <a href="#pricing">Pricing</a>
+          <a href="https://tool.ibrahimshuaib.com" target="_blank" rel="noopener">Free keyword tool</a>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-title">Resources</div>
+          <a href="https://blog.ibrahimshuaib.com" target="_blank" rel="noopener">Blog</a>
+          <a href="#faq">FAQ</a>
+          <a href="#proof">Proof</a>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-title">Connect</div>
+          <a href="https://www.linkedin.com/in/ibrahimshuaib" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="https://twitter.com/ibrahimshuaib" target="_blank" rel="noopener">X / Twitter</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 SEO Content Engine OS™ · Ibrahim Shuaib</span>
+      <span>Built with the system it sells</span>
+    </div>
+  </div>
+</footer>
+
+<div class="sticky-cta">
+  <a href="https://ibrahimshuaibseo.gumroad.com" class="btn btn-primary" target="_blank" rel="noopener">Get the OS — $297</a>
+</div>
+
+<script>
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 12);
+}, { passive:true });
+
+const revealEls = document.querySelectorAll('.reveal');
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+}, { threshold:0.12 });
+revealEls.forEach(el => io.observe(el));
+
+document.querySelectorAll('.faq-item').forEach(item => {
+  item.querySelector('.faq-q').addEventListener('click', () => {
+    const wasOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    if (!wasOpen) item.classList.add('open');
+  });
+});
+
+const modules = [
+  { code:'M07', name:'90-Day Strategy Planner' },
+  { code:'M01', name:'Keyword Intelligence' },
+  { code:'M02', name:'SERP Intelligence' },
+  { code:'M03', name:'Article Writing System' },
+  { code:'M04', name:'On-Page SEO Optimizer' },
+  { code:'M05', name:'Content Refresh Engine' },
+  { code:'M06', name:'Distribution Engine' },
+];
+
+const engineBody = document.getElementById('engine-body');
+const progressFill = document.getElementById('engine-progress-fill');
+const progressLabel = document.getElementById('engine-progress-label');
+const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+function renderEngine(states) {
+  engineBody.innerHTML = '';
+  modules.forEach((m, i) => {
+    const state = states[i];
+    const row = document.createElement('div');
+    row.className = 'engine-row' + (state === 'running' ? ' is-running' : state === 'done' ? ' is-done' : '');
+    row.innerHTML =
+      '<span class="engine-code">' + m.code + '</span>' +
+      '<span class="engine-name">' + m.name + '</span>' +
+      '<span class="engine-status ' + (state === 'idle' ? '' : state) + '">' +
+      (state === 'idle' ? 'IDLE' : state === 'running' ? 'RUNNING' : 'DONE') + '</span>';
+    engineBody.appendChild(row);
+  });
+  const doneCount = states.filter(s => s === 'done').length;
+  progressFill.style.width = (doneCount / modules.length * 100) + '%';
+  progressLabel.textContent = doneCount + ' / ' + modules.length + ' complete';
+}
+
+if (reducedMotion) {
+  renderEngine(['done','done','done','running','idle','idle','idle']);
+} else {
+  let states = new Array(modules.length).fill('idle');
+  let cursor = 0;
+
+  function tick() {
+    if (cursor >= modules.length) {
+      setTimeout(() => {
+        states = new Array(modules.length).fill('idle');
+        cursor = 0;
+        renderEngine(states);
+        setTimeout(tick, 700);
+      }, 1600);
+      return;
+    }
+    if (cursor > 0) states[cursor - 1] = 'done';
+    states[cursor] = 'running';
+    renderEngine(states);
+    cursor++;
+    setTimeout(tick, 1450);
+  }
+
+  renderEngine(states);
+  setTimeout(tick, 900);
+}
+</script>
+</body>
+</html>
