@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://ibrahimshuaib.com/sitemap.xml
+Sitemap: https://www.ibrahimshuaib.com/sitemap.xml
