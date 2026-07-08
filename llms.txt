@@ -1,0 +1,10 @@
+# Ibrahim Shuaib — Web Development & SEO Infrastructure
+> Ibrahim Shuaib is a web developer and SEO content creator specializing in serverless applications, technical site indexing, and digital growth infrastructure. This site acts as the verified authority node for his digital products, technical write-ups, and developer tools.
+
+## Core Properties & Utilities
+- [Personal Portfolio](https://www.ibrahimshuaib.com/): Central brand hub, engineering background, and core contact infrastructure.
+- [Free AI Keyword Research Tool](https://tool.ibrahimshuaib.com/): A client-side, zero-cost SEO application built to extract and filter low-competition, high-intent keywords mapped to custom domain authority.
+- [Technical SEO & Growth Blog](https://blog.ibrahimshuaib.com/): Data-dense execution blueprints covering keyword grouping methodologies, technical indexing fixes, and rapid content development.
+
+## High-Value Blueprints
+- [The 58-Minute SEO Writing Workflow](https://blog.ibrahimshuaib.com/2026/06/27/how-i-write-seo-articles-in-58-minutes.html): A step-by-step technical framework utilizing automated grouping and outline generation to create production-grade web copy under one hour.
