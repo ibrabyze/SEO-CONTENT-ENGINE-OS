@@ -1,4 +1,21 @@
+
 User-agent: *
+Allow: /
+
+# Explicitly Allow Leading Generative Search Crawlers
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Google-Extended
 Allow: /
 
 Sitemap: https://www.ibrahimshuaib.com/sitemap.xml
