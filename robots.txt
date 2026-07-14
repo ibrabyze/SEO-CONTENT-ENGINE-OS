@@ -18,4 +18,4 @@ Allow: /
 User-agent: Google-Extended
 Allow: /
 
-Sitemap: https://www.ibrahimshuaib.com/sitemap.xml
+Sitemap: https://ibrahimshuaib.com/sitemap.xml
